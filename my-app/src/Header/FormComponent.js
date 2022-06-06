@@ -23,7 +23,7 @@ export default function FormComponent (props){
          <FormLabel>TChoose language</FormLabel>
                <Form.Select name="city" aria-label="Default select example">
                   <option>Choose language</option>
-                  {['en',['fi','ru']].map ( language => 
+                  {['en','fi','ru'].map ( language => 
                            <option key={language}>{language}</option>
                            )}
                </Form.Select>
