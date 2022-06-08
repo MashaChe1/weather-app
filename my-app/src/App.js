@@ -66,7 +66,7 @@ function App() {
     <Container>
       <Row>
         <Col>
-          <HeaderComponent firstName="Rasim" handleOnSubmitForm={handleOnSubmit} />
+          <HeaderComponent firstName="Mary" handleOnSubmitForm={handleOnSubmit} />
         </Col>
       </Row>
       <Row>

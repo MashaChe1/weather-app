@@ -24,3 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 src/keys.js
+my-app/keys.js
