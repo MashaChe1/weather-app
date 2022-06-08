@@ -1,45 +1,17 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import { Container, Row, Col } from 'react-bootstrap';
-import HeaderComponent from './Header/HeaderComponent';
-import dataTypes from './Header/type.json';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
-import { google_api_key } from './keys';
-
-const containerStyle = {
-  width: '800px',
-  height: '600px'
-};
-
-const center = {
-  lat: 59.4370,
-  lng: 24.7536
-};
-
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import { Container, Row, Col } from "react-bootstrap";
+import HeaderComponent from "./Header/HeaderComponent";
+import dataTypes from "./Header/type.json";
+import MapComponent from "./Body/MapComponent";
+import { useCookies } from "react-cookie";
 
 function App() {
-
-  const [map, setMap] = React.useState(null)
-
-  const { isLoaded } = useJsApiLoader({
-    id: 'google-map-script',
-    googleMapsApiKey: google_api_key
-  });
-
-  const onLoad = React.useCallback(function callback(map) {
-    const bounds = new window.google.maps.LatLngBounds(center);
-    map.fitBounds(bounds);
-    setMap(map)
-  }, [])
-
-  const onUnmount = React.useCallback(function callback(map) {
-    setMap(null)
-  }, [])
-
+  const [form, setForm] = useState(null);
+  const [cookies, setCookie, removeCookie] = useCookies(['weather']);
 
   function handleOnSubmit(event) {
-    // setSelectedCity(city);
     event.preventDefault();
     const city = event.target.city.value;
     const unit = event.target.unit.value;
@@ -51,38 +23,39 @@ function App() {
       }
     }
 
-    let exclude = dataTypes.filter(dtype => !selectedTypes.includes(dtype.value));
-
-    console.log(exclude);
+    let excludeDataType = dataTypes.filter(
+      (dtype) => !selectedTypes.includes(dtype.value)
+    );
     // console.log(selectedTypes);
     const language = event.target.language.value;
-    console.log(city);
-    console.log(unit);
-    console.log(language);
+    const updateData = {
+      city,
+      unit,
+      language,
+      excludeDataType,
+    }
+    setForm(updateData);
+    setCookie('weather', updateData )
   }
-
 
   return (
     <Container>
       <Row>
         <Col>
-          <HeaderComponent firstName="Mary" handleOnSubmitForm={handleOnSubmit} />
+          <HeaderComponent
+            firstName="Mary"
+            handleOnSubmitForm={handleOnSubmit}
+            setForm={setForm}
+            form={form}
+            cookie={cookies.weather}
+          />
         </Col>
       </Row>
       <Row>
         <Col>
-          {isLoaded ? (
-            <GoogleMap
-              mapContainerStyle={containerStyle}
-              center={center}
-              zoom={6}
-              onLoad={onLoad}
-              onUnmount={onUnmount}
-            >
-              { /* Child components, such as markers, info windows, etc. */}
-              <></>
-            </GoogleMap>
-          ) : <></>}
+          <MapComponent 
+          form={form} 
+          cookie={cookies.weather} />
         </Col>
       </Row>
     </Container>
