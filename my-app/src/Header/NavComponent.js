@@ -1,6 +1,5 @@
 import React from "react";
-import { Navbar, Container } from "react-bootstrap"; 
-// reactBootstrap готовая библиотека Реак компонентов
+import { Navbar, Container } from "react-bootstrap";
 
 export default function NavComponent() {
   return (
