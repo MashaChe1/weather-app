@@ -4,13 +4,13 @@ import "./App.css";
 import { Container, Row, Col } from "react-bootstrap";
 import HeaderComponent from "./Header/HeaderComponent";
 import dataTypes from "./Header/type.json";
-import MapComponent from "./Body/MapComponent";
 import { useCookies } from "react-cookie";
+import BodyComponent from "./Body/BodyComponent";
 
 function App() {
   const [form, setForm] = useState(null);
 
-  const [cookies, setCookie, removeCookie] = useCookies(['weather']);
+  const [cookies, setCookie] = useCookies(['weather']);
 
   console.log(cookies.weather);
 
@@ -53,14 +53,14 @@ function App() {
             setForm={setForm}
             form={form}
             cookie={cookies.weather}
+            setCookie={setCookie}
+            
           />
         </Col>
       </Row>
       <Row>
         <Col>
-          <MapComponent
-            form={form}
-            cookie={cookies.weather} />
+          <BodyComponent form={form} cookie={cookies.weather}/>
         </Col>
       </Row>
     </Container>

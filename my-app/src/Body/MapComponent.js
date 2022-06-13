@@ -2,7 +2,7 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import { GoogleMap, useJsApiLoader } from "@react-google-maps/api";
 import { google_api_key } from "../keys";
-import cities from '../Header/cities.json'
+
 
 const containerStyle = {
   height: "400px",
@@ -15,11 +15,16 @@ export default function MapComponent(props) {
     googleMapsApiKey: google_api_key,
   });
 
+    const center = {
+      lat: props.weather.coord.lon,
+      lng: props.weather.coord.lat
+  };
+
   return (
     <Container className="mt-3">
       {isLoaded ? (
         <GoogleMap mapContainerStyle={containerStyle}
-        center={cities[(props.cookie || {}).city || props.form.city]} 
+        center={center} 
         zoom={10}>
           {/* Child components, such as markers, info windows, etc. */}
           <></>
