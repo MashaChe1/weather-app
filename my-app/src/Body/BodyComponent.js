@@ -6,7 +6,7 @@ import { getCurrentWeather } from "../apiService/weatherService";
 export default function BodyComponent (props) {
 
   const [ weather, setWeather ] = useState(null);
-
+  
   const get = () => {
     getCurrentWeather(props.form || props.cookie)
       .then((response) => {
@@ -21,11 +21,12 @@ export default function BodyComponent (props) {
       if(props.form || props.cookie )
     get();
   }, [props.form]);
+
   
 
    return (
       <>
-      <DataComponent {...props}/>
+      <DataComponent {...props} weather={weather}/>
       {weather && (<MapComponent {...props} weather={weather}/>)}
       </>
    )

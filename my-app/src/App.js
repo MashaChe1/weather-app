@@ -54,17 +54,17 @@ function App() {
             form={form}
             cookie={cookies.weather}
             setCookie={setCookie}
-            
           />
         </Col>
       </Row>
       <Row>
         <Col>
-          <BodyComponent form={form} cookie={cookies.weather}/>
+          <BodyComponent form={form} cookie={cookies.weather} />
         </Col>
       </Row>
     </Container>
   );
 }
+
 
 export default App;
