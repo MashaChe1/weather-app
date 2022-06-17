@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import DataComponent from "./DataComponent";
 import MapComponent from "./MapComponent";
-import { getCurrentWeather } from "../apiService/weatherService";
+import { getForecastWeather } from "../apiService/weatherService";
 
-export default function BodyComponent (props) {
+export default function ForecastComponent (props) {
 
   const [ weather, setWeather ] = useState(null);
   
   const get = () => {
-    getCurrentWeather(props.form || props.cookie)
+    getForecastWeather(props.form || props.cookie)
       .then((response) => {
         setWeather(response);
         console.log('response', response);
@@ -26,8 +26,8 @@ export default function BodyComponent (props) {
 
    return (
       <>
-      <DataComponent {...props} weather={weather}/>
-      {weather && (<MapComponent {...props} weather={weather}/>)}
+      {/* <DataComponent {...props} weather={weather}/> */}
+      {/* {weather && (<MapComponent {...props} weather={weather}/>)} */}
       </>
    )
 }

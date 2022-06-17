@@ -14,6 +14,12 @@ export default function DataComponent(props) {
                <td>{value}</td>
             </tr>)
          }
+
+         tr.push (<tr key="description">
+            <td>Description</td>
+            <td>{props.weather.weather[0].description}</td>
+         </tr>)
+
          return tr;
       }
    }

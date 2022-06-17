@@ -5,7 +5,10 @@ import { Container, Row, Col } from "react-bootstrap";
 import HeaderComponent from "./Header/HeaderComponent";
 import dataTypes from "./Header/type.json";
 import { useCookies } from "react-cookie";
-import BodyComponent from "./Body/BodyComponent";
+import CurrentComponent from "./Body/CurrentComponent";
+import { Routes, Route } from 'react-router-dom';
+import ForecastComponent from "./Body/ForecastComponent";
+
 
 function App() {
   const [form, setForm] = useState(null);
@@ -59,7 +62,11 @@ function App() {
       </Row>
       <Row>
         <Col>
-          <BodyComponent form={form} cookie={cookies.weather} />
+          <Routes>
+            <Route path="/" element={ <CurrentComponent form={form} cookie={cookies.weather} /> }/>
+            <Route path="/current/:city" element={ <CurrentComponent form={form} cookie={cookies.weather} /> }/>
+            <Route path="/forecast" element={ <ForecastComponent form={form} cookie={cookies.weather} /> }/>
+          </Routes>
         </Col>
       </Row>
     </Container>
@@ -68,3 +75,7 @@ function App() {
 
 
 export default App;
+
+            
+            
+
