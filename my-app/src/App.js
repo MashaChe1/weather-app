@@ -46,6 +46,8 @@ function App() {
     setForm(updateData);
     setCookie('weather', updateData)
   }
+
+  // Мы оставили хедерКомпонент статичным при изменении ссылки
   return (
     <Container>
       <Row>
@@ -62,6 +64,11 @@ function App() {
       </Row>
       <Row>
         <Col>
+        {/* Внутки компонента Routes описываем ссылки
+        Каждая ссылка это Route компонет, который запускается при ссылке определенной в path="/"
+        В элемент пишем компонент, который будет обрабатываться.
+        что бы передать любой параметр в компонент в Route path пишется двоеточие и завание переменной. :city = Tallinn
+        */}
           <Routes>
             <Route path="/" element={ <CurrentComponent form={form} cookie={cookies.weather} /> }/>
             <Route path="/current/:city" element={ <CurrentComponent form={form} cookie={cookies.weather} /> }/>

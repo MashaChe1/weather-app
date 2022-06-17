@@ -12,6 +12,12 @@ export default function NavComponent() {
           <Nav
           className="me-auto"
           navbarScroll>
+
+
+            {/* Link запускает обработку правильного компонента. 
+            Без линк теряется смысл ReactRauter, обычный <a href="/"> 
+            перезапускает всю страницу 
+            */}
           <Link className="nav-link" to="/current/0">Tallinn</Link>
           <Link className="nav-link" to="/current/1">Tartu</Link>
           <Link className="nav-link" to="/current/2">Kuressaare</Link>
