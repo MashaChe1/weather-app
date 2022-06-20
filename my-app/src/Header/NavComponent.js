@@ -12,10 +12,11 @@ export default function NavComponent() {
           <Nav
           className="me-auto"
           navbarScroll>
-          <Link className="nav-link" to="/current/0">Tallinn</Link>
-          <Link className="nav-link" to="/current/1">Tartu</Link>
-          <Link className="nav-link" to="/current/2">Kuressaare</Link>
-          <Link className="nav-link" to="/current/3">Pärnu</Link>
+          <Link className="nav-link" to="/current/tallinn">Tallinn</Link>
+          <Link className="nav-link" to="/current/tartu">Tartu</Link>
+          <Link className="nav-link" to="/current/kuressaare">Kuressaare</Link>
+          <Link className="nav-link" to="/current/parnu">Pärnu</Link>
+          <Link className="nav-link" to="/forecast">Forecast</Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

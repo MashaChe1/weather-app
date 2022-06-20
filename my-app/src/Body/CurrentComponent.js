@@ -3,6 +3,7 @@ import DataComponent from "./DataComponent";
 import MapComponent from "./MapComponent";
 import { getCurrentWeather } from "../apiService/weatherService";
 import { useParams } from "react-router-dom";
+import cities from '../Header/cities.json';
 
 export default function CurrentComponent (props) {
 
@@ -16,7 +17,7 @@ export default function CurrentComponent (props) {
     const data = props.form || props.cookie;
 
     if (params.city) {
-      data.city = params.city;
+      data.city = cities.findIndex(city => city.name.toLocaleLowerCase() === params.city);
     }
 
     getCurrentWeather(data)
