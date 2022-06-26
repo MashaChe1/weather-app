@@ -18,27 +18,36 @@ export default function ForecastComponent(props) {
         const dataByDays = [];
 
         for (const [index, data] of response.list.entries()) {
-          oneDay.push(data);
 
-              if ((index + 1) % 8 === 0) {
+          const dayOfDate = moment.unix(data.dt).date();
+          const prevDayOfDate = oneDay.length ? moment.unix(oneDay[oneDay.length - 1].dt).date() : dayOfDate;
+
+          if (dayOfDate === prevDayOfDate) {
+            oneDay.push(data);
+          } else {
             dataByDays.push(oneDay);
             oneDay = [];
+            oneDay.push(data);
           }
+
+
+          //     if ((index + 1) % 8 === 0) {
+          //   dataByDays.push(oneDay);
+          //   oneDay = [];
+          // }
         }
 
         setDays(dataByDays);
 
       })
       .catch((error) => {
-        console.log('error in api call', error)
+        console.log('Error in api call', error)
       });
   }
   useEffect(() => {
     if (props.form || props.cookie)
       get();
   }, [props.form]);
-
-  // Запустить moment.unix(day[0].dt).date()
 
   return (
     <>
@@ -47,19 +56,15 @@ export default function ForecastComponent(props) {
           <Tab eventKey={index1} key={index1} title={'Day ' + moment.unix(day[0].dt).date()}>
             <Tabs className="mb-3 mt-2">
               {day.map((data, index2) => (
-                <Tab eventKey={index2} key={index2} title={data.dt_txt}>
-                  <DataComponent {...props} weather={data}/>
+                <Tab eventKey={index2} key={index2} title={moment.unix(data.dt).format('HH:mm')}>
+                  <DataComponent {...props} weather={data} />
                 </Tab>
               ))}
             </Tabs>
           </Tab>
         ))}
       </Tabs>
-      {days.length && (<MapComponent {...props} weather={weather.city}/>)}
+      {days.length && (<MapComponent {...props} weather={weather.city} />)}
     </>
   )
 }
-
-
-
-

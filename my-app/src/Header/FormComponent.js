@@ -13,11 +13,11 @@ export default function FormComponent(props) {
         unit: props.unit,
         language: props.weather,
       });
-      props.setCookie('weather',{
+      props.setCookie('weather', {
         city: props.selectedCity,
         unit: props.unit,
         language: props.weather
-        
+
       })
     }
   });

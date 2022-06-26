@@ -4,18 +4,41 @@ import { sentenceCase } from 'change-case';
 
 
 export default function DataComponent(props) {
+   console.log('datacomponent', props.cookie.unit);
+
+   function getMeasurements(key) {
+      const unit = props.cookie.unit;
+      let sign = '';
+      switch (key) {
+         case 'temp_min':
+         case 'temp_max':
+         case 'temp':
+         case 'feels_like':
+            if (unit === 'metric') {
+               return (<>&#8451;</>);
+            }
+            if (unit === 'standard') {
+               return (<>&#8490;</>);
+            }
+            if (unit === 'imperial') {
+               return (<>&#8457;</>);
+            }
+      }
+
+      return (<>sign</>)
+   }
 
    function generateRows() {
       if (props.weather) {
          const tr = [];
          for (const [key, value] of Object.entries(props.weather.main)) {
-            tr.push (<tr key={key}>
+            tr.push(<tr key={key}>
                <td>{sentenceCase(key)}</td>
-               <td>{value}</td>
+               <td>{value}{getMeasurements(key)}</td>
             </tr>)
          }
 
-         tr.push (<tr key="description">
+         tr.push(<tr key="description">
             <td>Description</td>
             <td>{props.weather.weather[0].description}</td>
          </tr>)
