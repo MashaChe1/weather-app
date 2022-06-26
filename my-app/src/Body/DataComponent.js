@@ -4,7 +4,7 @@ import { sentenceCase } from 'change-case';
 
 
 export default function DataComponent(props) {
-   console.log('datacomponent', props.cookie.unit);
+   // console.log('datacomponent', props.cookie.unit);
 
    function getMeasurements(key) {
       const unit = props.cookie.unit;
@@ -15,17 +15,17 @@ export default function DataComponent(props) {
          case 'temp':
          case 'feels_like':
             if (unit === 'metric') {
-               return (<>&#8451;</>);
+               sign = (<>&#8451;</>);
             }
             if (unit === 'standard') {
-               return (<>&#8490;</>);
+               sign = (<>&#8490;</>);
             }
             if (unit === 'imperial') {
-               return (<>&#8457;</>);
+               sign = (<>&#8457;</>);
             }
       }
 
-      return (<>sign</>)
+      return sign;
    }
 
    function generateRows() {
