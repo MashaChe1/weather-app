@@ -5,6 +5,7 @@ import { getCurrentWeather } from "../apiService/weatherService";
 import { useParams } from "react-router-dom";
 import cities from '../Header/cities.json';
 
+
 export default function CurrentComponent(props) {
 
   const [weather, setWeather] = useState(null);
