@@ -2,9 +2,12 @@ import React, { useEffect, useRef } from "react";
 import { Container, Form, Col, Row } from "react-bootstrap";
 import cities from "./cities.json";
 import dataTypes from "./type.json";
+import { useLocation } from 'react-router-dom'
+
 
 export default function FormComponent(props) {
   const formElement = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     if (props.form === null && !props.cookie) {
@@ -41,6 +44,7 @@ export default function FormComponent(props) {
             <Form.Group className="mb-3" controlId="city">
               <Form.Label>Choose city</Form.Label>
               <Form.Select
+                disabled={!!location.pathname.match('current')}
                 defaultValue={(props.cookie || {}).city || props.selectedCity}
                 name="city"
                 aria-label="Default select example">
@@ -52,11 +56,12 @@ export default function FormComponent(props) {
                 ))}
               </Form.Select>
             </Form.Group>
-          </Col>
+           </Col>
           <Col>
             <Form.Group className="mb-3" controlId="language">
               <Form.Label>Choose language</Form.Label>
               <Form.Select
+
                 defaultValue={(props.cookie || {}).language || props.language}
                 name="language"
                 aria-label="Default select example"
