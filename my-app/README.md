@@ -1,6 +1,38 @@
-# Getting Started with Create React App
+# Weather App with Google map
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Made with [React JS](https://reactjs.org/).
+
+Приложение адаптивно и может использоваться на любом размере экрана.
+
+Приложение, показывающее погоду в таких городах - Таллинн, Тарту, Курессааре, Пярну.
+
+Используется два эндпоинта - текущая погода и прогноз на 5 дней.
+
+Приложение стилизованно при помощи [React Bootstrap](https://react-bootstrap.github.io/).
+
+Были использованные дополнительные npm пакеты `moment`, 
+`react router dom`, `cookie`.
+
+
+## Структура приложения
+
+### apiServices
+
+### Body
+
+### Header
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Available Scripts
 

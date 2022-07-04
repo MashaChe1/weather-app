@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import { Link } from 'react-router-dom';
+import cities from './cities.json';
 
 export default function NavComponent() {
   return (
@@ -14,13 +15,17 @@ export default function NavComponent() {
             navbarScroll>
             <Link className="nav-link" to="/weather-app">Home</Link>
             <Link className="nav-link" to="/weather-app/forecast">Forecast</Link>
-            <Link className="nav-link" to="/weather-app/current/tallinn">Tallinn</Link>
-            <Link className="nav-link" to="/weather-app/current/tartu">Tartu</Link>
-            <Link className="nav-link" to="/weather-app/current/kuressaare">Kuressaare</Link>
-            <Link className="nav-link" to="/weather-app/current/parnu">Pärnu</Link>
+            {cities.map(city => (
+              <Link key={city.name}
+                className="nav-link"
+                to={`/weather-app/current/${city.name.toLowerCase()}`}>
+                {city.name}
+              </Link>
+            ))}
           </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
 }
+
