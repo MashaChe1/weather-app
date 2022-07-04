@@ -8,7 +8,8 @@ export default function DataComponent(props) {
       const unit = props.cookie.unit;
       const temperature = ['temp_min', 'temp_max', 'temp', 'feels_like'];
       const humidity = 'humidity';
-      const pressure = 'pressure';
+      const pressure = ['pressure', 'sea_level', 'grnd_level'];
+
       const tempSign = {
          metric: (<>&#8451;</>),
          standard: (<>&#8490;</>),
@@ -21,7 +22,7 @@ export default function DataComponent(props) {
       if (humidity===key) {
          return '%';
       }
-      if (pressure===key) {
+      if (pressure.includes(key)) {
          return (<>&#13169;</>);
       }
    }
